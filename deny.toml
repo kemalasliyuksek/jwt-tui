@@ -7,6 +7,10 @@ ignore = [
     # The author explicitly recommends moving on; nothing actionable for us
     # until ratatui drops it. Tracked upstream.
     "RUSTSEC-2024-0436",
+    # `lru` 0.12.5 IterMut soundness issue (Stacked Borrows). Transitive via
+    # quinn-proto → reqwest. Patched in lru 0.16.3; we don't control the
+    # version pulled by the HTTP stack. Re-evaluate when reqwest bumps quinn.
+    "RUSTSEC-2026-0002",
 ]
 
 [licenses]
