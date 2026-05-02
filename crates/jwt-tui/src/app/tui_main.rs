@@ -233,10 +233,8 @@ fn handle_insert(state: &mut AppState, code: KeyCode, modifiers: KeyModifiers) -
         _ => return false,
     };
     match code {
-        KeyCode::Char(c) => {
-            if !modifiers.contains(KeyModifiers::CONTROL) {
-                target.push(c);
-            }
+        KeyCode::Char(c) if !modifiers.contains(KeyModifiers::CONTROL) => {
+            target.push(c);
         }
         KeyCode::Backspace => {
             target.pop();

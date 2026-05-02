@@ -32,7 +32,13 @@ impl DecodeViewState {
     }
 
     pub fn refresh(&mut self) {
-        match decode_unverified(self.token.trim()) {
+        let trimmed = self.token.trim();
+        if trimmed.is_empty() {
+            self.decoded = None;
+            self.error = None;
+            return;
+        }
+        match decode_unverified(trimmed) {
             Ok(d) => {
                 self.decoded = Some(d);
                 self.error = None;
@@ -101,7 +107,10 @@ fn render_header_pane(f: &mut Frame, area: Rect, theme: &Theme, state: &DecodeVi
             out
         }
         (None, Some(err)) => vec![Line::from(Span::styled(err, theme.bad()))],
-        _ => Vec::new(),
+        _ => vec![Line::from(Span::styled(
+            "(no token loaded — press `i` and paste)",
+            theme.muted(),
+        ))],
     };
     f.render_widget(Paragraph::new(lines).block(block), area);
 }
