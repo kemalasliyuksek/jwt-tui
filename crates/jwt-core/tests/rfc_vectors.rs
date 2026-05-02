@@ -72,9 +72,12 @@ fn round_trip_es256() {
     let payload = json!({"sub":"a"});
     use ring::rand::SystemRandom;
     use ring::signature::{EcdsaKeyPair, KeyPair, ECDSA_P256_SHA256_FIXED_SIGNING};
-    let kp =
-        EcdsaKeyPair::from_pkcs8(&ECDSA_P256_SHA256_FIXED_SIGNING, &pkcs8, &SystemRandom::new())
-            .unwrap();
+    let kp = EcdsaKeyPair::from_pkcs8(
+        &ECDSA_P256_SHA256_FIXED_SIGNING,
+        &pkcs8,
+        &SystemRandom::new(),
+    )
+    .unwrap();
     let token = sign::sign(
         Algorithm::ES256,
         &SigningKey::EcP256Pkcs8(pkcs8),
