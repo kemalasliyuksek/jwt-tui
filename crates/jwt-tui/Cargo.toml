@@ -1,0 +1,56 @@
+[package]
+name = "jwt-tui"
+description = "Terminal UI and CLI for inspecting, signing, verifying, and security-testing JSON Web Tokens."
+keywords = ["jwt", "tui", "cli", "security"]
+categories = ["command-line-utilities", "authentication"]
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+readme.workspace = true
+
+[lints]
+workspace = true
+
+[[bin]]
+name = "jwt-tui"
+path = "src/main.rs"
+
+[dependencies]
+jwt-core = { path = "../jwt-core", version = "0.1.0", features = ["jwks"] }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+clap = { workspace = true }
+clap_complete = { workspace = true }
+clap_mangen = { workspace = true }
+ratatui = { workspace = true }
+crossterm = { workspace = true }
+tui-textarea = { workspace = true }
+tokio = { workspace = true }
+reqwest = { workspace = true }
+rusqlite = { workspace = true }
+arboard = { workspace = true }
+age = { workspace = true }
+rayon = { workspace = true }
+directories = { workspace = true }
+toml = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+tracing-appender = { workspace = true }
+chrono = { workspace = true }
+hex = { workspace = true }
+url = { workspace = true }
+once_cell = { workspace = true }
+humantime = { workspace = true }
+base64 = { workspace = true }
+
+[dev-dependencies]
+insta = { workspace = true }
+assert_cmd = { workspace = true }
+predicates = { workspace = true }
+tempfile = { workspace = true }
